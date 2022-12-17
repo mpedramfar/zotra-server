@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const path = require('path');
-process.env.NODE_CONFIG_DIR = path.resolve(__dirname + "/../config/");
-
 const http = require('http');
+
+process.env.NODE_CONFIG_DIR = path.resolve(__dirname + "/../config/");
 const config = require('config');
 
 require('../module/translation-server/src/zotero');
@@ -13,6 +13,13 @@ const ImportEndpoint = require('../module/translation-server/src/importEndpoint'
 const ExportEndpoint = require('../module/translation-server/src/exportEndpoint');
 
 Zotero.Utilities.Item.itemToAPIJSON = require('../src/attachments');  // by default, also return attachments 
+
+
+// Prevent UnhandledPromiseRejection crash
+process.on('unhandledRejection', (reason, promise) => {
+	Zotero.debug('Unhandled rejection: ' + (reason.stack || reason), 1)
+});
+
 
 var try_server_first = config.get('try_server_first');
 
@@ -72,7 +79,14 @@ var WebEndpointCLI = async function(data, single=false, only_attachments=false, 
         headers: [],
         request: {body: data, query: {single: single}},
         response: {},
-        throw: (...x)=>console.error(...x),
+        throw: function(...x){
+            console.log(123, x);
+            const err = new Error('name required');
+            err.status = 400;
+            err.expose = true;
+            throw err;
+            // console.error(...x);
+        },
         assert: (...x)=>null,
         is: (...x)=>null,
         set: (...x)=>null
