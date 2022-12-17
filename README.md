@@ -36,3 +36,6 @@ When this is true, `zotra-cli` will try to connect to a running instance of tran
 Note that `zotra server` will run a modified version of the translation server that supports fetching attachment urls.
 
 
+## Acknowledgements
+
+The abaility to handle attachments is based on a [patch](https://github.com/zotero/translation-server/pull/99) suggested by @noctux
