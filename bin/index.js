@@ -79,14 +79,7 @@ var WebEndpointCLI = async function(data, single=false, only_attachments=false, 
         headers: [],
         request: {body: data, query: {single: single}},
         response: {},
-        throw: function(...x){
-            console.log(123, x);
-            const err = new Error('name required');
-            err.status = 400;
-            err.expose = true;
-            throw err;
-            // console.error(...x);
-        },
+        throw: (...x)=>console.error(...x),
         assert: (...x)=>null,
         is: (...x)=>null,
         set: (...x)=>null
