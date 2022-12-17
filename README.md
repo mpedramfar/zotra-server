@@ -24,7 +24,7 @@ npm install -g .
 
 ## Usage
 
-Run 'zotra --help' to see the usage.
+Run `zotra --help` to see the usage.
 See [zotero translation server](https://github.com/zotero/translation-server/) for more details.
 
 ## Configuration
@@ -38,4 +38,4 @@ Note that `zotra server` will run a modified version of the translation server t
 
 ## Acknowledgements
 
-The abaility to handle attachments is based on a [patch](https://github.com/zotero/translation-server/pull/99) suggested by @noctux
+The ability to handle attachments is based on a [patch](https://github.com/zotero/translation-server/pull/99) suggested by @noctux
