@@ -21,6 +21,15 @@ Then you can install `zotra-cli` with
 cd zotra-cli
 npm install -g .
 ```
+Note that installing globally, i.e. with the `-g` flag, may requre `sudo` in some systems.
+Alternatively, you can install it without the `-g` flag which would not require sudo.
+```bash
+npm install .
+```
+In this case, to run zotra-cli, you need to specify the full path:
+```bash
+node /path/to/zotra-cli/bin/index.js --help
+```
 
 ## Usage
 
