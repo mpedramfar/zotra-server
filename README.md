@@ -22,6 +22,7 @@ cd zotra-cli
 npm install -g .
 ```
 Note that installing globally, i.e. with the `-g` flag, may requre `sudo` in some systems.
+**It is generally better to NOT install node packages as root.**
 Alternatively, you can install it without the `-g` flag which would not require sudo.
 ```bash
 npm install .
