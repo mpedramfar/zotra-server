@@ -41,7 +41,7 @@ See [Zotero translation server](https://github.com/zotero/translation-server/) f
 ## Configuration
 
 The configuration file is located at config/default.json5
-The only configuration option that is specific to this library is `try_server_first`.
+The only configuration option that is specific to this library is `tryServerFirst`.
 When this is true and Zotra server is being called from the command-line, it will try to connect to a running instance of Zotra server (or Zotero translation server) first and if it fails, then tries without the server.
 
 

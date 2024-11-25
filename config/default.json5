@@ -4,7 +4,7 @@
 	"deproxifyURLs": false, // Automatically try deproxified versions of URLs
 	"identifierSearchLambda": "", // Identifier search Lambda function for text search
 	"port": 1969,
-	"host": "0.0.0.0", // host to listen on
+	"host": "127.0.0.1", // host to listen on
 	"httpMaxResponseSize": 10, // Max size of requested response to load; triggers 400 ResponseSize error when exceeded
 	"textSearchTimeout": 5,
 	"translators": {
@@ -12,5 +12,5 @@
 	},
 	"userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0",
 	"translatorsDirectory": "./modules/translators",
-	"try_server_first": true // specific to zotra
+	"tryServerFirst": true // specific to zotra server
 }

@@ -21,7 +21,7 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 
-var try_server_first = config.get('try_server_first');
+var tryServerFirst = config.get('tryServerFirst');
 
 
 RequestFromServer = async function(data, endpoint, content_type, param = ""){
@@ -63,13 +63,13 @@ var filterAttachments = function(items, only_attachments){
 
 
 var WebEndpointCLI = async function(data, single=false, only_attachments=false, content_type='text/plain'){
-    if (try_server_first) {
+    if (tryServerFirst) {
         try {
             var output = await RequestFromServer(data, 'web', content_type, (single ? "single=1" : ""));
             output = JSON.parse(output);
             return filterAttachments(output, only_attachments);
         } catch (e) {       // Server is not running or not reachable
-            try_server_first = false;
+            tryServerFirst = false;
         }
     }
 
@@ -90,13 +90,13 @@ var WebEndpointCLI = async function(data, single=false, only_attachments=false, 
 }
 
 var SearchEndpointCLI = async function(data, only_attachments=false){
-    if (try_server_first) {
+    if (tryServerFirst) {
         try {
             output = await RequestFromServer(data, 'search', 'text/plain');
             output = JSON.parse(output);
             return filterAttachments(output, only_attachments);
         } catch (e) {       // Server is not running or not reachable
-            try_server_first = false;
+            tryServerFirst = false;
         }
     }
 
@@ -115,11 +115,11 @@ var SearchEndpointCLI = async function(data, only_attachments=false){
 }
 
 var ImportEndpointCLI = async function(item){
-    if (try_server_first) {
+    if (tryServerFirst) {
         try {
             return await RequestFromServer(data, 'import', 'text/plain');
         } catch (e) {       // Server is not running or not reachable
-            try_server_first = false;
+            tryServerFirst = false;
         }
     }
 
@@ -141,11 +141,11 @@ var ImportEndpointCLI = async function(item){
 var ExportEndpointCLI = async function(items, format=null){
     format = format || 'bibtex';
 
-    if(try_server_first){
+    if(tryServerFirst){
         try {
             return await RequestFromServer(data, 'export', 'application/json', "format="+format);
         } catch (e) {       // Server is not running or not reachable
-            try_server_first = false;
+            tryServerFirst = false;
         }
     }
 
