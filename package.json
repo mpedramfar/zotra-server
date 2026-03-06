@@ -1,6 +1,6 @@
 {
   "name": "zotra",
-  "version": "1.0.0",
+  "version": "2.0.5",
   "description": "A small wrapper around Zotero translation server to support fetching attachments and cli use",
   "main": "./bin/index.js",
   "bin":{
@@ -13,7 +13,7 @@
   "author": "Mohammad Pedramfar",
   "license": "AGPLv3",
   "dependencies": {
-      "yargs": "^17.6.2",
+      "yargs": "^18.0.0",
       "translation-server": "./module/translation-server"
   }
 }

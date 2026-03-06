@@ -169,7 +169,7 @@ var Server = async function(){
 
 
 var main = async function(argv){
-    args = argv['_'];
+    let args = argv['_'];
 
     if (args[0] == 'web') {
         url = args[1];
@@ -222,38 +222,41 @@ var main = async function(argv){
     };
 }
 
-const argv = require('yargs/yargs')(process.argv.slice(2))
-                .parserConfiguration({
-                    "parse-numbers": false,
-                    "parse-positional-numbers": false,
-                  })
-                .option('single', {
-                    alias: 's',
-                    default: false,
-                    type: 'boolean'
+const yargs = require('yargs/yargs')(process.argv.slice(2));
+let version;
+yargs.showVersion(v => version=v);
+const argv = yargs.parserConfiguration({
+                "parse-numbers": false,
+                "parse-positional-numbers": false,
                 })
-                .option('only-attachments', {
-                    alias: 'a',
-                    default: false,
-                    type: 'boolean'
-                })
-                .option('format', {
-                    alias: 'f',
-                    default: 'bibtex',
-                    type: 'string'
-                })
-                .option('json', {
-                    alias: 'j',
-                    default: false,
-                    type: 'boolean'
-                })
-                .help('help')
-                .usage("$0 [-s|--single] [-a|--only-attachments] web <url>")
-                .usage("$0 [-a|--only-attachments] <-j|--json> web <json>")
-                .usage("$0 [-a|--only-attachments] search <search_identifier>")
-                .usage("$0 import <data>")
-                .usage("$0 [-f <format>|--format <format>] export <json>")
-                .usage("$0 server")
-                .parse();
+            .option('single', {
+                alias: 's',
+                default: false,
+                type: 'boolean'
+            })
+            .option('only-attachments', {
+                alias: 'a',
+                default: false,
+                type: 'boolean'
+            })
+            .option('format', {
+                alias: 'f',
+                default: 'bibtex',
+                type: 'string'
+            })
+            .option('json', {
+                alias: 'j',
+                default: false,
+                type: 'boolean'
+            })
+            .version("version", "Show version of the wrapped Zotero translation server", version).alias("version", "v")
+            .help().alias("help", "h")
+            .usage("$0 [-s|--single] [-a|--only-attachments] web <url>")
+            .usage("$0 [-a|--only-attachments] <-j|--json> web <json>")
+            .usage("$0 [-a|--only-attachments] search <search_identifier>")
+            .usage("$0 import <data>")
+            .usage("$0 [-f <format>|--format <format>] export <json>")
+            .usage("$0 server")
+            .parse();
 
 main(argv);
